@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weekend 4 Live Solve</title>
+
+    <link href="styles/bootstrap.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+
+    <script src="vendors/angular.js" type="text/javascript"></script>
+    <script src="scripts/client.js" type="text/javascript"></script>
+    <script src="scripts/controllers/gallery.controller.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="GalleryController as vm">
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>{{vm.greeting}}</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4" ng-repeat="card in vm.cards track by $index">
+                <!-- if you use track by $index you can get around angular not liking repeating images -->
+                <img ng-src="img/{{card.path}}" ng-click="vm.toggleDescription(card)" />
+                <p>Views: {{card.views}}</p>
+                <p ng-if="card.showDescription"> {{card.description}} </p>
+                <!-- ng if means it doesn't exist, vs ng-show/ng-hide will show or hide something there -->
+                <button class="btn btn-primary " ng-click="vm.addLike(card)"> Likes: {{card.likes}}</button>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
